@@ -1,0 +1,25 @@
+<% unless @error.errors.full_messages.empty? %>
+  <% @error.errors.full_messages.each do |error| %>
+    <p><%= error %></p>
+  <% end %>
+<% end %>
+
+<%= form_for @error , url: error_new_path() do |f| %>
+<p>
+  Area <%= select_tag "Area", options_from_collection_for_select(@areas,"id","name") %>
+  <script type="text/javascript">
+   $(document).ready(function(){
+        $("#email_field").val(my_email);
+   });
+</script>
+  Language<%= select_tag "Language", options_from_collection_for_select(@languages,"id","name") %>
+  <!-- <%= @areas.find_by_id(areas's seleced value).langueages.all %> -->
+</p>
+<p>
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+</p>
+<%= f.submit "OK" %>
+<%= f.submit "Cancel" %> <br>
+<%= f.submit "Delete" %>
+<% end %>

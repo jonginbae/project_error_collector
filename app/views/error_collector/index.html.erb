@@ -1,0 +1,22 @@
+<nav>
+  <%= link_to("Profile" , user_edit_path()) %>
+  <%= link_to("Write Error" , error_new_path()) %>
+  <%= link_to("My List" , main_path()) %>
+  <%= link_to("See Top Rank" , main_path()) %>
+  <%= link_to("Log Out : #{@current_user.email} " , logout_path(),:method => :delete )%>
+
+  <table>
+    <tr>
+      <td>Error</td>
+      <td>Resolved Error</td>
+    </tr>
+    <tr>
+      <td>
+        <div class="error_container"></div>
+      </td>
+      <td>
+        <div class="resovled_error_container"></div>
+      </td>
+    </tr>
+  </table>
+</nav>
