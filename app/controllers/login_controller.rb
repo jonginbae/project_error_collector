@@ -17,9 +17,26 @@ class LoginController < ApplicationController
     end
   end
 
-  def findPassword_path
-    @user = User.find params[:email]
+  def findPassword
   end
+
+ def sendEmail
+   @user = User.find_by_email(params[:email])
+
+   respond_to do |format|
+    if @user.present?
+      binding.pry
+      # Tell the UserMailer to send a welcome email after save
+      UserMailer.welcome_email(@user).deliver_now
+
+      format.html { redirect_to( login_path) }
+      format.json { render json: @user, status: :created, location: @user }
+    else
+      format.html { render action: 'new' }
+      format.json { render json: @user.errors, status: :unprocessable_entity }
+    end
+  end
+ end
 
   def destroy
     session[:user_id] = nil

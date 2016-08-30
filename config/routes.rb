@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/login' => 'login#create'
   delete '/logout' => 'login#destroy' , :as =>"logout"
   get '/login/findPassword' => 'login#findPassword', :as => "findPassword"
+  post '/login/findPassword' => 'login#sendEmail'
 
   get'/user/new' => "user#new" , :as => "user_new"
   post'/user/new' => "user#create"

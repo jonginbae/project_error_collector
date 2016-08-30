@@ -1,6 +1,6 @@
 User.destroy_all
 
-u1 = User.create :first_name => "bae" , :last_name => "jongin", :password => "chicken" , :password_confirmation => "chicken" , :email => "au.jib0610@gmail.com" , :github => "https://github.com/jonginbae" , :phone => "111111111" , :authority => "user"
+u1 = User.create :first_name => "bae" , :last_name => "jongin", :password => "chicken" , :password_confirmation => "chicken" , :email => "beset0610@naver.com" , :github => "https://github.com/jonginbae" , :phone => "111111111" , :authority => "user"
 
 
 Area.destroy_all

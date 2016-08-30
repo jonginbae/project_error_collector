@@ -1,8 +1,7 @@
-# class UserMailer < ApplicationMailer
-#
-#   def welcome_email(user)
-#     @user = user
-#     @email  = 'http://example.com/login'
-#     mail(to: @user.email, subject: 'Welcome to My Awesome Site')
-#   end
-# end
+class UserMailer < ApplicationMailer
+
+  def welcome_email(user)
+    @user = user
+    mail(to: @user.email, subject: 'Hi! here is your password!')
+  end
+end
