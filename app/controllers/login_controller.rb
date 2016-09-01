@@ -21,26 +21,20 @@ class LoginController < ApplicationController
   end
 
  def sendEmail
-   @user = User.find_by_email(params[:email])
-
-   respond_to do |format|
-    if @user.present?
-      binding.pry
-      # Tell the UserMailer to send a welcome email after save
-      UserMailer.welcome_email(@user).deliver_now
-
-      format.html { redirect_to( login_path) }
-      format.json { render json: @user, status: :created, location: @user }
-    else
-      format.html { render action: 'new' }
-      format.json { render json: @user.errors, status: :unprocessable_entity }
-    end
-  end
+   if params[:commit] == 'Cancel'
+     redirect_to login_path
+   else
+     @user = User.find_by_email(params[:email])
+     if @user.present?
+        UserMailer.welcome(@user).deliver_now
+        redirect_to login_path
+      end
+   end
  end
 
   def destroy
     session[:user_id] = nil
-    flash[:scucess] = "logout_sucess"
+    flash[:success] = "logout_sucess"
 
     redirect_to login_path
   end

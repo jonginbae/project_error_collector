@@ -1,22 +1,21 @@
 <%= form_tag login_path do %>
-<p>
   <table>
     <tr>
-      <td><%= label_tag :email %></td>
-      <td><%= email_field_tag :email , "", :required => true %></td>
+      <td class="label_td"><%= label_tag :email %></td>
+      <td class="text_td"><%= email_field_tag :email , "", :required => true %></td>
       <td rowspan="2">
         <%= submit_tag "Login" %>
       </td>
     </tr>
     <tr>
-      <td><%= label_tag :password %></td>
-      <td><%= password_field_tag :password, "" , :required => true %></td>
+      <td class="label_td"><%= label_tag :password %></td>
+      <td class="text_td"><%= password_field_tag :password, "" , :required => true %></td>
     </tr>
     <tr>
-      <td colspan="2"><%= link_to("Create new Account" , user_new_path()) %></td>
+      <td class="link_td" colspan="2"><%= link_to("Create new Account" , user_new_path()) %></td>
     </tr>
     <tr>
-      <td colspan="2"><%= link_to("Forgot my Account" , findPassword_path(:email)) %></td>
+      <td class="link_td" colspan="2"><%= link_to("Forgot my Account" , findPassword_path(:email)) %></td>
     </tr>
   </table>
 <% end %>

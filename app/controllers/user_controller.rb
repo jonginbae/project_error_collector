@@ -26,12 +26,16 @@ class UserController < ApplicationController
 
   def update
     if params[:commit] == 'Cancel'
+      flash[:success] = "user_create_cancel"
       redirect_to main_path
     elsif params[:commit] == 'Delete'
       user = User.find @current_user.id
       user.destroy
+      flash[:success] = "user_delete_success"
       redirect_to login_path()
     else
+        flash[:success] = "user_update_success"
+        binding.pry
         user = @current_user
         user.update user_params
         redirect_to main_path

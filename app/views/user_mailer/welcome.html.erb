@@ -4,9 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to example.com, <%= @user.last_name %></h1>
+    <h1>Hi, <%= @user.last_name %></h1>
     <p>
-      your password is: <%= @user.password_digest %>.<br>
+      Click here: <%= link_to("Your account" , user_edit_path(@user)) %>.<br>
     </p>
     <p>Thanks for joining and have a great day!</p>
   </body>

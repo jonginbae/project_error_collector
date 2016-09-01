@@ -1,3 +1,20 @@
-// Place all the styles related to the Login controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+table {
+  color: white;
+  position: relative;
+  margin-top: 25%;
+  margin-left: 38%;
+  border : 7px solid white;
+  width : 25%;
+  height : 20%;
+}
+
+
+
+.label_td{
+  text-align: center;
+}
+
+.link_td{
+  width: 100%;
+  text-align: center;
+}
