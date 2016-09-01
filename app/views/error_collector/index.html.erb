@@ -1,12 +1,50 @@
 <div class="main_container">
-
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row"></div>
   <% @errors.each do |e| %>
-  <div class="message_container">
-    <p>writer : <%= User.find_by_id(e.user_id).first_name %> </p>
-    <p>date : <%= e.updated_at %> </p>
-    <p>laguage :<%= Area.find_by_id(e.area_id).name %>-<%= Language.find_by_id(e.language_id).name %> </p>
-    <p>image : </p>
-    <p>content : <%= e.content %></p>
+
+  <div class="col s12 m7">
+    <div class="card horizontal">
+      <div class="card-image">
+         <%= cl_image_tag(e.image, :width=>250, :height=>200, :crop=>"scale", :secure=>true) %>
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+        <p><%= User.find_by_id(e.user_id).email %>   :   <%= e.title %>   :   <%= Language.find_by_id(e.language_id).name %>    <%= e.updated_at %></p>
+        <p><%= e.content %></p>
+        </div>
+        <div class="card-action">
+          <div class="row">
+            <div class="col s12 m11"></div>
+          <% if @current_user.id != e.user_id %>
+            <% if Like.find_by_user_id(@current_user.id).present? %>
+              <% if Like.where(error_id: e.id).find_by_user_id(@current_user.id).error_id == e.id %>
+                <div class="col s12 m1">
+                  <%= form_tag error_remove_path() do %>
+                  <input id="user_id" name="user_id" type="hidden" value= <%= @current_user.id %> />
+                  <input id="error_id" name="error_id" type="hidden" value= <%= e.id %> />
+                  <%= submit_tag "✭" , :class =>"waves-effect waves-light btn"%>
+                  <% end %>
+                </div>
+            <% end %>
+          <% else %>
+            <div class="col s12 m1">
+              <%= form_tag error_like_path() do %>
+              <input id="user_id" name="user_id" type="hidden" value= <%= @current_user.id %> />
+              <input id="error_id" name="error_id" type="hidden" value= <%= e.id %> />
+              <%= submit_tag "✩" , :class =>"waves-effect waves-light btn"%>
+              <% end %>
+            </div>
+            <% end %>
+          <% else %>
+          <% end %>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
   <% end %>
 </div>

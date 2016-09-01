@@ -5,19 +5,41 @@
 <% end %>
 
 <%= form_for @error , url: error_new_path(),:method => :post, :html => { :multipart => true } do |f| %>
-<%= f.label :image %>
- <%= f.cl_image_upload(:image) %>
-<p>
-  <%= f.label :area_id %>
-    <%= f.collection_select(:area_id, @areas, :id, :name) %>
-  <%= f.label :language_id %>
-  <%= f.collection_select(:language_id, @languages, :id, :name) %>
-</p>
-<p>
-  <%= f.label :content %>
-  <%= f.text_area :content %>
-</p>
-<%= f.submit "OK" %>
-<%= f.submit "Cancel" %> <br>
-<%= f.submit "Delete" %>
+<div class="new_error_container">
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row">
+    <div class="col s12 m2 center"><%= f.label :image %></div>
+    <div class="col s12 m10"> <%= f.cl_image_upload(:image) %></div>
+    <div class="col s12 m2"></div>
+  </div>
+  <div class="row">
+    <div class="col s12 m2 center"><%= f.label :title %></div>
+    <div class="col s12 m10"><%= f.text_field :title %></div>
+    <div class="col s12 m2"></div>
+  </div>
+  <div class="row">
+    <div class="col s12 m2 center">  <%= f.label :area_id %></div>
+    <div class="col s12 m10"><%= f.collection_select(:area_id, @areas, :id, :name)  %></div>
+    <div class="col s12 m2"></div>
+  </div>
+  <div class="row">
+    <div class="col s12 m2 center"><%= f.label :language_id %></div>
+    <div class="col s12 m10"><%= f.collection_select(:language_id, @languages, :id, :name) %></div>
+    <div class="col s12 m2"></div>
+  </div>
+  <div class="row">
+    <div class="col s12 m2 center"><%= f.label :content %></div>
+    <div class="col s12 m10"><%= f.text_area :content %></div>
+    <div class="col s12 m2"></div>
+  </div>
+  <div class="row">
+    <div class="col s12 m4"></div>
+    <div class="col s12 m2"><%= f.submit "OK" , :class =>"waves-effect waves-light btn"%></div>
+    <div class="col s12 m2"><%= f.submit "Cancel" , :class =>"waves-effect waves-light btn"%></div>
+    <div class="col s12 m4"></div>
+  </div>
+</div>
 <% end %>

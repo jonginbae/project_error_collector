@@ -10,7 +10,11 @@ class ErrorCollectorController < ApplicationController
   end
 
   def create
-    req = Cloudinary::Uploader.upload(params[:file])
+    if params[:file].present?
+      req = Cloudinary::Uploader.upload(params[:file])
+    else
+      req =""
+    end
     @error = Error.new error_params
     @error.image = req["public_id"]
     if params[:commit] == 'OK'
@@ -23,12 +27,36 @@ class ErrorCollectorController < ApplicationController
         render :new
       end
     elsif params[:commit] == 'Cancel'
+      @Like = Like.new
+
       redirect_to main_path()
     end
   end
+
+  def newrel
+
+  end
+
+  def createrel
+      @like = Like.new ({ :user_id => params[:user_id], :error_id => params[:error_id]})
+    if @like.save
+      flash[:success] = "like_create_success"
+      redirect_to main_path()
+    else
+      flash[:success] = "like_create_success"
+      redirect_to main_path()
+    end
+  end
+
+  def remove 
+    like = Like.where(error_id: params[:error_id]).find_by_user_id(params[:user_id])
+    like.destroy
+    redirect_to main_path
+  end
+
 end
 
 private
     def error_params
-      params.require(:error).permit(:user_id, :area_id , :language_id , :content , :image)
+      params.require(:error).permit(:user_id, :area_id , :title, :language_id , :content , :image)
     end

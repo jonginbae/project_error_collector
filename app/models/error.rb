@@ -14,6 +14,7 @@
 
 class Error < ActiveRecord::Base
   belongs_to :user
+  has_many :likes
   has_one :area
   has_many :languages , :through => :area
 

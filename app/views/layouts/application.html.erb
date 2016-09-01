@@ -3,39 +3,38 @@
 <head>
   <title>ProjectErrorCollector</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag    'login', media: 'all', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag    'error_collector', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 
 <% if flash[:success] %>
-  <h1> <%= flash[:success]  %> </h1>
 <% end %>
 <% if flash[:error] %>
-  <h1> <%= flash[:error]  %> </h1>
 <% end %>
-  <div class="title_container">
-    <h1>Error Collector</h1>
-  </div>
-  <% if @current_user.present? %>
-  <nav>
-    <span style="display:inline-block; width: 1%;"></span>
-    <%= link_to("Home" , main_path()) %>
-    <span style="display:inline-block; width: 1%;"></span>
-    <%= link_to("Profile" , user_edit_path()) %>
-    <span style="display:inline-block; width: 2%;"></span>
-    <%= link_to("Write Error" , error_new_path()) %>
-    <span style="display:inline-block; width: 2%;"></span>
-    <%= link_to("My List" , main_path()) %>
-    <span style="display:inline-block; width: 2%;"></span>
-    <%= link_to("See Top Rank" , main_path()) %>
-    <span style="display:inline-block; width: 35%;"></span>
-    <%= link_to("Log Out : #{@current_user.email} " , logout_path(), :method => :delete )%>
-  </nav>
-  <% end %>
 
+  <div class="navbar-fixed">
+  <nav class="card-panel teal lighten-4">
+    <div class="row" id="nav_logo">
+      <a class="brand-logo left"><i class="material-icons">error</i>ErrorCollector</a>
+    </div>
+    <div class="row">
+    </div>
+    <% if @current_user.present? %>
+    <div class="row" id="nav_link">
+      <%= link_to("Log Out : #{@current_user.email} " , logout_path(), :method => :delete , :class => "right brand-logo")%>
+      <ul id="nav-mobile" class="left-align hide-on-med-and-down">
+        <li><a href= <%= main_path  %> ><i class="material-icons left">store</i>Home</a></li>
+        <li><a href= <%= user_edit_path  %> ><i class="material-icons left">perm_identity</i>Profile</a></li>
+        <li><a href= <%= error_new_path  %> ><i class="material-icons left">playlist_add</i>Add Error</a></li>
+        <li><a href= <%= mylist_path  %> ><i class="material-icons left">star</i>My List</a></li>
+        <li><a href= <%= main_path  %> ><i class="material-icons left">list</i>See Top Rank</a></li>
+      </ul>
+    </div>
+    <% end %>
+  </nav>
+  </div>
 <%= yield %>
 
 </body>

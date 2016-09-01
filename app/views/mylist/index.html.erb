@@ -1,0 +1,27 @@
+<div class="list_container">
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row">
+    <div class="col s12 m6"> My List </div>
+    <div class="col s12 m6"> Favorite List </div>
+  </div>
+  <div class="row">
+      <div class="col s12 m1">User</div>
+      <div class="col s12 m2">Title</div>
+      <div class="col s12 m3">content</div>
+      <div class="col s12 m1"></div>
+      <div class="col s12 m2">Title</div>
+      <div class="col s12 m3">content</div>
+  </div>
+  <div class="row">
+    <% if @errors.present? %>
+    <% binding.pry %>
+      <% @errors.each do |e| %>
+          <div class="col s12 m1"><%= User.find_by_id(e.user_id).first_name %></div>
+          <div class="col s12 m2"><%= e.title %></div>
+          <div class="col s12 m3"><td>e.updated_at</td></div>
+      <% end %>
+    <% end %>
+  </div>

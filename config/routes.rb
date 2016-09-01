@@ -16,4 +16,9 @@ Rails.application.routes.draw do
   get '/main' => 'error_collector#index', :as => 'main'
   get '/error/new' => 'error_collector#new', :as =>'error_new'
   post '/error/new' => 'error_collector#create'
+  get '/error/likes' => 'error_collector#newrel', :as => 'error_like'
+  post '/error/likes' => 'error_collector#createrel'
+  post '/error/remove' => 'error_collector#remove' , :as =>"error_remove"
+
+  get '/mylist/' => 'mylist#index' , :as => 'mylist'
 end

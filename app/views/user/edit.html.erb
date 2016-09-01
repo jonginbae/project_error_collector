@@ -5,35 +5,56 @@
 <% end %>
 
 <%= form_for @user, url: user_edit_path() do |f| %>
-<p>
-  <%= f.label :email %>
-  <%= f.email_field :email,  :require => true %>
-</p>
-<p>
-  <%= f.label :password %>
-  <%= f.password_field :password , :require => true %>
-</p>
-<p>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation,  :require => true %>
-</p>
-<p>
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
-</p>
-<p>
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
-</p>
-<p>
-  <%= f.label :phone %>
-  <%= f.telephone_field :phone, :require => true %>
-</p>
-<p>
-  <%= f.label :github %>
-  <%= f.url_field :github, :require => true %>
-</p>
-<%= f.submit "OK" %>
-<%= f.submit "Cancel" %><br>
-<%= f.submit "Delete" %>
+<div class="new_user_container">
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row">
+    <div class="col s12 m2 center-align"><%= f.label :email %></div>
+    <div class="col s12 m8"><%= f.email_field :email, :require => true %></div>
+    <div class="col s12 m2"></div>
+  </div>
+  <div class="row">
+    <div class="col s12 m2 center-align"><%= f.label :password %></div>
+    <div class="col s12 m8"><%= f.password_field :password , :require => true %></div>
+    <div class="col s12 m2"></div>
+  </div>
+  <div class="row">
+    <div class="col s12 m2 center-align"><%= f.label :password_confirmation %></div>
+    <div class="col s12 m8"><%= f.password_field :password_confirmation,  :require => true %></div>
+    <div class="col s12 m2"></div>
+  </div>
+  <div class="row">
+    <div class="col s12 m2 center-align"><%= f.label :first_name %></div>
+    <div class="col s12 m8"><%= f.text_field :first_name %></div>
+    <div class="col s12 m2"></div>
+  </div>
+  <div class="row">
+    <div class="col s12 m2 center-align"><%= f.label :last_name %></div>
+    <div class="col s12 m8"><%= f.text_field :last_name %></div>
+    <div class="col s12 m2"></div>
+  </div>
+  <div class="row">
+    <div class="col s12 m2 center-align"><%= f.label :phone %></div>
+    <div class="col s12 m8"><%= f.telephone_field :phone, :require => true %></div>
+    <div class="col s12 m2"></div>
+  </div>
+  <div class="row">
+    <div class="col s12 m2 center-align"><%= f.label :github %></div>
+    <div class="col s12 m8"><%= f.url_field :github, :require => true %></div>
+    <div class="col s12 m2"></div>
+  </div>
+  <div class="row">
+    <div class="col s12 m4"></div>
+    <div class="col s12 m2 center-align"><%= f.submit "OK" , :class =>"waves-effect waves-light btn" %></div>
+    <div class="col s12 m2"><%= f.submit "Cancel" , :class =>"waves-effect waves-light btn" %></div>
+    <div class="col s12 m4"></div>
+  </div>
+  <div class="row">
+    <div class="col s12 m4"></div>
+    <div class="col s12 m4 center-align"><%= f.submit "Delete" , :class =>"waves-effect waves-light btn" %></div>
+    <div class="col s12 m4"></div>
+  </div>
+</div>
 <% end %>

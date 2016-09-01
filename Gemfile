@@ -29,6 +29,8 @@ gem 'bcrypt', '~> 3.1.7'
 # add cloudinary
 gem 'cloudinary'
 
+gem 'materialize-sass'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

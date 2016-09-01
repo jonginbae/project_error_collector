@@ -1,21 +1,38 @@
 <%= form_tag login_path do %>
-  <table>
-    <tr>
-      <td class="label_td"><%= label_tag :email %></td>
-      <td class="text_td"><%= email_field_tag :email , "", :required => true %></td>
-      <td rowspan="2">
-        <%= submit_tag "Login" %>
-      </td>
-    </tr>
-    <tr>
-      <td class="label_td"><%= label_tag :password %></td>
-      <td class="text_td"><%= password_field_tag :password, "" , :required => true %></td>
-    </tr>
-    <tr>
-      <td class="link_td" colspan="2"><%= link_to("Create new Account" , user_new_path()) %></td>
-    </tr>
-    <tr>
-      <td class="link_td" colspan="2"><%= link_to("Forgot my Account" , findPassword_path(:email)) %></td>
-    </tr>
-  </table>
+<div class="login_container">
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row">
+    <div class="col s12 m2 center-align">
+      <%= label_tag :email %>
+    </div>
+    <div class="col s12 m8">
+      <%= email_field_tag :email , "", :required => true %>
+    </div>
+    <div class="col s12 m2"></div>
+  </div>
+  <div class="row">
+    <div class="col s12 m2 center-align">
+      <%= label_tag :password %></td>
+    </div>
+    <div class="col s12 m8">
+      <%= password_field_tag :password, "" , :required => true %>
+    </div>
+    <div class="col s12 m2">
+      <%= submit_tag "Login" , :class =>"waves-effect waves-light btn" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12 m4"></div>
+    <div class="col s12 m2 center-align">
+      <%= link_to("New Account" , user_new_path(), :class =>"waves-effect waves-light btn") %>
+    </div>
+    <div class="col s12 m2 center-align">
+      <%= link_to("Find My Account" , findPassword_path(:email) ,:class =>"waves-effect waves-light btn") %>
+    </div>
+    <div class="col s12 m4"></div>
+  </div>
+</div>
 <% end %>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ProjectErrorCollector</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+<% if flash[:success] %>
+<% end %>
+<% if flash[:error] %>
+<% end %>
+<div class="card-panel  teal lighten-3" id="logo_container">
+    <span class="red-text ">
+      <div class="row">
+        <div class="col s12 m3 center_align">
+          <i class="large material-icons">error</i>
+        </div>
+        <div class="col s12 m9 center_align">
+          <h class="brand-logo">EROOR COLLECTOR</h>
+        </div>
+    </div>
+    </span>
+  </div>
+  <% if @current_user.present? %>
+  <nav class="card-panel teal lighten-4">
+    <%= link_to("Log Out : #{@current_user.email} " , logout_path(), :method => :delete , :class => "right brand-logo")%>
+    <ul id="nav-mobile" class="left-align hide-on-med-and-down">
+      <li><a href= <%= main_path  %> ><i class="material-icons left">store</i>Home</a></li>
+      <li><a href= <%= user_edit_path  %> ><i class="material-icons left">perm_identity</i>Profile</a></li>
+      <li><a href= <%= error_new_path  %> ><i class="material-icons left">playlist_add</i>Add Error</a></li>
+      <li><a href= <%= main_path  %> ><i class="material-icons left">star</i>My List</a></li>
+      <li><a href= <%= main_path  %> ><i class="material-icons left">list</i>See Top Rank</a></li>
+    </ul>
+  </nav>
+  <% end %>
+
+<%= yield %>
+
+</body>
+</html>
+
+
+
+
+
+
+<div class="main_container">
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row"></div>
+  <div class="row"></div>
+  <% @errors.each do |e| %>
+  <div class="col s12 m7">
+    <div class="card horizontal">
+      <div class="card-image">
+         <%= cl_image_tag(e.image, :width=>250, :height=>200, :crop=>"scale", :secure=>true) %>
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+        <p><%= User.find_by_id(e.user_id).last_name %>   :   <%= e.title %>   :   <%= Language.find_by_id(e.language_id).name %>    <%= e.updated_at %></p>
+        <p><%= e.content %></p>
+        </div>
+        <div class="card-action">
+          <div class="row">
+            <div class="col s12 m11"></div>
+            <% if  (@current_user.id != e.id) %>
+              <div class="col s12 m1"><%= form_tag error_like_path() do %>
+                <input id="user_id" name="user_id" type="hidden" value= <%= @current_user.id %> />
+                <input id="error_id" name="error_id" type="hidden" value= <%= e.id %> />
+                <%= submit_tag "✩" , :class =>"waves-effect waves-light btn"%></div>
+              <% elsif (Like.find_by_id(@current_user.id).error_id == e.id) %>
+                <div class="col s12 m1"><%= form_tag error_like_path() do %>
+                <input id="user_id" name="user_id" type="hidden" value= <%= @current_user.id %> />
+                <input id="error_id" name="error_id" type="hidden" value= <%= e.id %> />
+                <%= submit_tag "✭" , :class =>"waves-effect waves-light btn"%></div>
+                <% else %>
+              <% end %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

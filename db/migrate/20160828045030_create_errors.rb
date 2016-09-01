@@ -4,6 +4,7 @@ class CreateErrors < ActiveRecord::Migration
       t.integer :user_id
       t.integer :area_id
       t.integer :language_id
+      t.string :title
       t.text :content
       t.text :image
 
